@@ -3,23 +3,20 @@ import Prelude
 import RSA
 import Data.Char (ord, chr)
 
+{-
+Aufgabe 1.1
+-}
 
 type Key =(Integer, Integer)
 
-
--- Zeichenketten in Teilketten der LÃ¤nge n aufspalten
-chunks :: Int-> String-> [String]
-chunks n s = if null s then [] else take n s : chunks n (drop n s)
-
-
 {-
-getter fÃ¼r erster Integer des Keys
+getter für erster Integer des Keys
 -}
 fstFromInteger :: Key-> Integer
 fstFromInteger (e, k) = e
 
 {-
-getter fÃ¼r zweiter Integer des Keys
+getter für zweiter Integer des Keys
 -}
 sndFromInteger :: Key-> Integer
 sndFromInteger (e, k) = k
@@ -53,23 +50,36 @@ modExp a n p =
 		then mod ((modExp a (div n 2) p)^2) p
 		else mod (a*(modExp a (div n 2) p)^2) p
 		
-
+{-
+Verschlüsselung von Strings zu [Integer] mit Verwendung der Keys
+-}
 encryption :: Key-> String-> [Integer]
 encryption publicKey s = map (encode publicKey) (map toInteger (map ord s))
 
+{-
+Entschlüsselung mit Hilfe des PrivateKeys
+-}
 decryption :: Key -> [Integer]-> String
 decryption privateKey listInteger = map chr (map fromInteger (map (decode privateKey) listInteger))
 
-----------------------------------------------------------------------------------------------------
 
-conversionToBase :: Int -> Integer -> [Integer]
+{-
+Aufgabe 1.3
+-}
+
+-- Zeichenketten in Teilketten der Länge n aufspalten
+chunks :: Int-> String-> [String]
+chunks n s = if null s then [] else take n s : chunks n (drop n s)
 
 
 
-conversionFromBase :: Int -> [Integer] -> Integer
+conversionToBase :: Int-> Integer-> [Integer]
+
+
+conversionFromBase :: Int-> [Integer]-> Integer
 
 
 stringAsNumber :: String -> Integer
 
-numberAsString :: Integer -> String
 
+numberAsString :: Integer-> String
