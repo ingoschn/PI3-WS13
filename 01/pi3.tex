@@ -1,0 +1,43 @@
+%\documentclass[Uebungsblatt]{pi3}
+%\documentclass[Loesungsblatt]{pi3}
+\documentclass{pi3}
+
+%\Blatt{1}{ausgabe}{abgabe} % use with Uebungsblatt
+\blatt{1} % use with Abgabe and Loesungsblatt
+\tutor{tutor}
+\uebungsgruppe{gruppe}
+\teilnehmer{teilnehmer 1 \\ teilnehmer 2 \\ teilnehmer 2}
+
+\begin{document}
+\maketitle
+
+\section{Titel der ersten Aufgabe}
+Hier steht eine tolle Dokumentation\dots
+\begin{code}
+fak :: Integer -> Integer
+fak 0 = 1
+fak n = n * fak (n-1)
+\end{code}
+
+\begin{xcode}
+data Tag = Montag | Dienstag | Mittwoch | Donnerstag | Freitag | Samstag | Sonntag
+             deriving (Show, Eq, Ord, Ix, Enum)
+\end{xcode}
+
+%from file
+Und hier aus einer Datei
+\haskellcode{test}
+
+%inline
+Und hier dann auch inline
+\hs{map toUpper :: [Char] -> [Char]}
+
+\section{Titel der zweiten Aufgabe}
+\begin{theorem}
+Hier postuliert man sein Theorem...
+\end{theorem}
+
+\begin{proof}
+Und hier wird es bewiessen...
+\end{proof}
+\end{document}
